@@ -25,29 +25,24 @@
                 @method('PUT')
                 <label for="company_name">Company Name</label><br>
                 <input type="text" id="company_name" name="company_name" class="company_name" size="50"
-                       value="{{$company->name}}"><br>
+                       value="{{$company->name}}" required><br>
                 <span id="SpanCname" class="error"></span> <br>
 
                 <label for="Address">Address</label><br>
-                <input type="text" id="Address" name="address" class="address" size="50" value="{{$company->location}}"><br>
+                <input type="text" id="Address" name="address" class="address" size="50"
+                       value="{{$company->location}}" required><br>
                 <span id="SpanAddress" class="error"></span> <br>
 
                 <label for="Email">Email</label><br>
-                <input type="text" id="Email" name="email" class="email" size="50" value="{{$company->email}}"><br>
+                <input type="text" id="Email" name="email" class="email" size="50"
+                       value="{{$company->email}}" required><br>
                 <span id="SpanEmail" class="error"></span> <br>
 
                 <label for="Contact">Contact number</label><br>
-                <input type="text" id="Contact" name="phone" class="phone" size="50" value="{{$company->number}}"><br>
+                <input type="text" id="Contact" name="phone" class="phone" size="50"
+                       value="{{$company->number}}" required><br>
                 <span id="SpanContact" class="error"></span><br>
-                <!--
-                <label for="logo">Company Logo</label><br>
-                <input type="file" name="logo" id="logo">
-                <div id="msg" role="alert" style="color: darkred;">
-                </div>
-                <img src="{{Storage::disk('uploads')->url($company->company_image)}}" height="200">
 
-                <span id="spanImage" class="error"></span><br>
-                -->
                 <button class="btn btn-outline-info" type="submit" id="submit">Submit</button>
             </form>
         @else
@@ -56,29 +51,22 @@
                 @csrf
                 <label for="company_name">Company Name</label><br>
                 <input type="text" id="company_name" name="company_name" class="company_name" size="50"
-                       value="{{@old('company_name')}}"><br>
+                       value="{{@old('company_name')}}" required><br>
                 <span id="SpanCname" class="error"></span> <br>
 
                 <label for="Address">Address</label><br>
                 <input type="text" id="Address" name="address" class="address" size="50"
-                       value="{{@old('address')}}"><br>
+                       value="{{@old('address')}}" required><br>
                 <span id="SpanAddress" class="error"></span> <br>
 
                 <label for="Email">Email</label><br>
                 <input type="text" id="Email" name="email" class="email" size="50" value="{{@old('email')}}"><br>
-                <span id="SpanEmail" class="error"></span> <br>
+                <span id="SpanEmail" class="error" required></span> <br>
 
                 <label for="Contact">Contact Number</label><br>
                 <input type="text" id="Contact" name="phone" class="phone" size="50" value="{{@old('phone')}}"><br>
-                <span id="SpanContact" class="error"></span><br>
-                <!--
-                <label for="logo">Company Logo</label><br>
-                <input type="file" name="logo" id="logo">
-                <div id="msg" role="alert" style="color: darkred;">
-                </div>
-                <img src="" height="200">
-                <span id="spanImage" class="error"></span>
-                -->
+                <span id="SpanContact" class="error" required></span><br>
+
                 <button class="btn btn-outline-info" type="submit" id="submit">Submit</button>
             </form>
 

@@ -143,14 +143,7 @@ class UserService
         $gender = $this->userRepository->all();
         $status = $this->userRepository->getStatus();
         $profile = $this->userRepository->findWithRelation($id);
-        if ($data->hasFile('file_image')) {
-            Storage::disk('uploads')->delete($profile->profile_pic);
-            $profile_image = $data->file('file_image');
-            $profile_pic = $profile_image->store('pp_image', 'uploads');
-            $profile->filename = $profile_pic;
-        } else {
-            $profile->filename = $profile->filename;
-        }
+
         $profile->phone_number = $data->number;
         $profile->gender_id = $data->gender;
         $profile->status_id = $data->status;

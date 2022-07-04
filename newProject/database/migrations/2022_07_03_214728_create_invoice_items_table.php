@@ -15,6 +15,7 @@ class CreateInvoiceItemsTable extends Migration
         Schema::create('invoice_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('invoice_id');
+            $table->string('comintent',125);
             $table->timestamps();
             $table->unsignedBigInteger('item_id');
             $table->string('quantity',125);

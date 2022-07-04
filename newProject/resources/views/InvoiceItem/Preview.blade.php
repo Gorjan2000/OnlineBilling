@@ -12,9 +12,7 @@
             <div id="preview_table">
                 <header>
                     <div class="row">
-                        <div class="col" id="company_logo">
-                            <img id="image_id" src="{{Storage::disk('uploads')->url($invoice->company->company_image)}}" style="width: 40px; height: 40px;">
-                        </div>
+
                         <div class="col company-details">
                             <h2 id="name">{{$invoice->company->name}}</h2>
                             <div id="address">{{$invoice->company->location}}</div>
@@ -29,6 +27,10 @@
                             <h1 id="invoice-id"></h1>
                             <div id="date">Date of Invoice:{{$invoice->updated_at}}</div>
                             <div id="duedate">Due Date:</div>
+                        </div>
+                        <div class="col invoice-details">
+                            <div id="comintent">Comintent:{{$invoice->comintent}}</div>
+
                         </div>
                     </div>
                     <table border="0" cellspacing="0" cellpadding="0">
@@ -49,7 +51,6 @@
                                 <tr>
                                     <td>{{$index}}</td>
                                     <td>{{$value['name']}}</td>
-
                                     <td>{{$value['cost']}}</td>
                                     <td>{{$value['quantity']}}</td>
                                     <td>{{$value['total']}}</td>
@@ -78,7 +79,7 @@
                         </tr>
                         <tr>
                             <td colspan="2"></td>
-                            <td colspan="2">GRAND TOTAL</td>
+                            <td colspan="2">TOTAL</td>
                             <td id="grand_total"></td>
                         </tr>
                         </tfoot>

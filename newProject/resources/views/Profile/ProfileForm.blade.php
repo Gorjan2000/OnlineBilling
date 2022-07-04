@@ -31,11 +31,11 @@
                     @csrf
                     @method('PATCH')
                     <label for="name">Name: </label>
-                    <input type="text" name="name" id="name" placeholder="Name" value="{{$profile->name}}"/><br>
+                    <input required type="text" name="name" id="name" placeholder="Name" value="{{$profile->name}}"/><br>
                     <span id="Spannumber" class="error">@error('name'){{$message}}@enderror</span> <br>
 
                     <label id="icon" for="number">Phone Number: </label>
-                    <input type="number" name="number" id="number" placeholder="Phone Number" value="{{$profile->phone_number}}"/><br>
+                    <input required type="number" name="number" id="number" placeholder="Phone Number" value="{{$profile->phone_number}}"/><br>
                     <span id="Spannumber" class="error">@error('phone_number'){{$message}}@enderror</span> <br>
                     <label for="gender">Gender:</label>
 
@@ -71,12 +71,6 @@
                             @endforeach
                         @endif
                     </select><br>
-                    <!--
-                    <label for="file_image">Upload Cover Image: </label>
-                    <input type="file" name="file_image" class="form-control" value="{{$profile->filename}}">
-                    <span id="Spanfile" class="error">@error('filename'){{$message}}@enderror</span> <br>
-                    -->
-
                     <button class="updatebutton" type="submit">Update</button>
 
                 </form>

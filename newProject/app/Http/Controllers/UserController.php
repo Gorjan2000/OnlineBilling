@@ -193,14 +193,6 @@ class UserController extends Controller
             $gender = $this->userRepository->all();
             $status = $this->userRepository->getStatus();
             $profile = $this->userRepository->findWithRelation($id);
-            /*
-            if ($request->hasFile('file_image')) {
-                Storage::disk('uploads')->delete($profile->profile_pic);
-                $this->fileService->storeFile($profile, $request, 'file_image', 'pp_image', 'profile_pic');
-            } else {
-                $profile->profile_pic = $profile->profile_pic;
-            }
-            */
             $profile->phone_number = $request->number;
             $profile->gender_id = $request->gender;
             $profile->status_id = $request->status;

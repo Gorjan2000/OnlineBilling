@@ -75,7 +75,8 @@ class InvoiceService
             "total_cost" => $request->cost_wod,
             "advance" => $request->advance,
             "final_cost" => $request->dcost,
-            "due" => $request->due
+            "due" => $request->due,
+            "comintent" => $request->comintent
         ]);
         $invoice_id = $invoice->id;
         for ($x = 0; $x < $total_item; $x++) {
@@ -93,6 +94,7 @@ class InvoiceService
     {
         $invoice = Invoice::with('invoice_items', 'company')->where('id', $id)->first();
         $invoice_items = $invoice->invoice_items;
+        $comintent = $invoice->comintent;
         $arr = [];
         foreach ($invoice_items as $invoice_item) {
             $item_list = [];
@@ -101,11 +103,12 @@ class InvoiceService
                 "name" => $item->name,
                 "cost" => $item->cost,
                 "quantity" => $invoice_item->quantity,
-                "total" => $item->cost * $invoice_item->quantity]);
+                "total" => $item->cost * $invoice_item->quantity
+                ]);
             array_push($arr, $item_list);
         }
         $discounted_cost = (1 - ($invoice->discount) / 100) * $invoice->total_cost;
-        return [$invoice, $arr, $discounted_cost];
+        return [$invoice, $arr, $discounted_cost, $comintent];
     }
 
     /**
@@ -118,6 +121,7 @@ class InvoiceService
     {
         $invoice = Invoice::with('invoice_items', 'company')->where('id', $id)->first();
         $invoice_items = $invoice->invoice_items;
+        $comintent = $invoice->comintent;
         $arr = [];
         foreach ($invoice_items as $invoice_item) {
             $item_list = [];
@@ -126,10 +130,11 @@ class InvoiceService
                 "name" => $item->name,
                 "cost" => $item->cost,
                 "quantity" => $invoice_item->quantity,
-                "total" => $item->cost * $invoice_item->quantity]);
+                "total" => $item->cost * $invoice_item->quantity
+                ]);
             array_push($arr, $item_list);
         }
-        return [$arr, $invoice];
+        return [$arr, $invoice, $comintent];
     }
 
     /**
@@ -156,12 +161,13 @@ class InvoiceService
             }
         }
         Invoice::where('id', $id)->update([
-            "discount" => $request->discount,
             "tax" => $request->tax,
             "total_cost" => $request->cost_wod,
             "advance" => $request->advance,
             "final_cost" => $request->dcost,
-            "due" => $request->due
+            "due" => $request->due,
+            "discount" => $request->discount,
+            "comintent" => $request->comintent
         ]);
         InvoiceItem::where('invoice_id', $id)->delete();
         for ($x = 0; $x < $total_item; $x++) {

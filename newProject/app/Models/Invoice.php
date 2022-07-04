@@ -9,7 +9,7 @@ class Invoice extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['company_id', 'tax', 'discount', 'total_cost', 'advance', 'final_cost', 'due'];
+    protected $fillable = ['company_id', 'comintent','tax', 'discount', 'total_cost', 'advance', 'final_cost', 'due'];
 
 
     public function items()
@@ -21,6 +21,6 @@ class Invoice extends Model
         return $this->hasMany(InvoiceItem::class, 'invoice_id', 'id');
     }
     public function company(){
-        return $this->belongsTo(Company1::class, 'company_id', 'id');
+        return $this->belongsTo(Company::class, 'company_id', 'id');
     }
 }

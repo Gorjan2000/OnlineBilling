@@ -40,21 +40,21 @@
                 @csrf
 
                 <label id="icon" for="name"><i class="icon-user"></i></label>
-                <input type="text" name="name" id="name" placeholder="Name" value="{{@old('name')}}"/><br>
+                <input required type="text" name="name" id="name" placeholder="Name" value="{{@old('name')}}"/><br>
                 <span id="Spanname" class="error">@error('name'){{$message}}@enderror</span> <br>
                 <label id="icon" for="email"><i class="icon-envelope "></i></label>
-                <input type="text" name="email" id="email" placeholder="Email" value="{{@old('email')}}"/><br>
+                <input required type="text" name="email" id="email" placeholder="Email" value="{{@old('email')}}"/><br>
                 <span id="Spanemail" class="error">@error('email'){{$message}}@enderror</span> <br>
                 <label id="icon" for="password"><i class="icon-shield"></i></label>
-                <input id="password" type="password" placeholder="Password" name="password" autocomplete="new-password">
+                <input required id="password" type="password" placeholder="Password" name="password" autocomplete="new-password">
                 <span id="Spanpassword" class="error">@error('password'){{$message}}@enderror</span> <br>
                 <label id="icon" for="confirm_password"><i class="icon-shield"></i></label>
-                <input id="password-confirm" type="password" placeholder="Confirm Password" name="password_confirmation"
+                <input required id="password-confirm" type="password" placeholder="Confirm Password" name="password_confirmation"
                        autocomplete="new-password">
                 <span id="SpanConfirmpassword" class="error">@error('confirm_password'){{$message}}@enderror</span> <br>
                 <label for="company">Company:</label>
 
-                <select name="company" id="company">
+                <select name="company" id="company" >
                     @foreach($companies as $company)
                         <option value="{{$company->id}}">{{$company->name}}</option>
                     @endforeach

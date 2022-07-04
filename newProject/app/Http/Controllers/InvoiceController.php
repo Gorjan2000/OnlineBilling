@@ -71,7 +71,7 @@ class InvoiceController extends Controller
                 'title'=>'title',
                 'body'=>'body'
             ];
-            Mail::to("gorjanspirovski@gmail.com")->send(new TestMail($details));
+            //Mail::to("gorjanspirovski@gmail.com")->send(new TestMail($details));
             return redirect()->route('invoice.index')->with('status', 'Invoice Created Successfully');
         } catch (\Exception $exception) {
             Log::error($exception);
@@ -93,7 +93,8 @@ class InvoiceController extends Controller
             $invoice = $result[0];
             $arr = $result[1];
             $discounted_cost = $result[2];
-            return view('InvoiceItem.Preview', compact('invoice', 'arr', 'discounted_cost'));
+            $comintent = $result[3];
+            return view('InvoiceItem.Preview', compact('invoice', 'arr', 'discounted_cost','comintent'));
         } catch (\Exception $exception) {
             Log::error($exception);
             return redirect()->back()->with('error_msg', $exception);
@@ -114,7 +115,8 @@ class InvoiceController extends Controller
                 $result = $this->invoiceService->edit($id);
                 $arr = $result[0];
                 $invoice = $result[1];
-                return view('InvoiceItem.InvoiceItemForm', compact('invoice', 'arr'));
+                $comintent = $result[2];
+                return view('InvoiceItem.InvoiceItemForm', compact('invoice', 'arr','comintent'));
             }
         } catch (\Exception $exception) {
             Log::error($exception);

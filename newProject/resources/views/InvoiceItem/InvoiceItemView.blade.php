@@ -22,6 +22,7 @@
             <tr>
                 <th scope="col" class="page_sort" id="id">S No.</th>
                 <th scope="col" class="page_sort" id="invoice">Invoice</th>
+                <th scope="col" class="page_sort" id="comintent">Comintent</th>
                 <th scope="col" class="page_sort" id="name">Company</th>
                 <th scope="col">View</th>
                 @canany(['update_invoice', 'delete_invoice'])
@@ -37,6 +38,7 @@
                 <tr>
                     <td >{{$index}}</td>
                     <td >Invoice{{$v->id}}</td>
+                    <td >{{$v->comintent}}</td>
                     <td >{{$v->company->name}}</td>
                     <td><a class="fa fa-eye" href="{{route('invoice.show', $v->id)}}"></a></td>
                     @canany(['update_invoice', 'delete_invoice'])

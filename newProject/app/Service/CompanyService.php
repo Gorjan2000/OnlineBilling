@@ -76,7 +76,7 @@ class CompanyService
     public function destroy($id)
     {
         $company = $this->companyRepository->find($id);
-        Storage::disk('uploads')->delete($company->company_image);
+        //Storage::disk('uploads')->delete($company->company_image);
         return $this->companyRepository->delete($id);
     }
 
