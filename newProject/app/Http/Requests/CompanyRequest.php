@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CompanyRequest extends FormRequest
 {
+
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,20 +28,18 @@ class CompanyRequest extends FormRequest
         switch ($this->method()) {
             case 'POST':
                 return [
-                    'name' => ['required','string', 'max:255'],
+                    'company_name' => ['required','string', 'max:255'],
                     'email' => ['required', 'string', 'email', 'max:255', 'unique:companies'],
                     'location' => ['required','string'],
-                    'phone_number' => ['required, min:10, numeric'],
-                    'company_image' => ['required, mimes:png, jpg, jpeg']
+                    'phone' => ['min:9, numeric']
                 ];
 
             case 'PUT':
                 return [
-                    'name' => ['required','string', 'max:255'],
+                    'company_name' => ['required','string', 'max:255'],
                     'email' => ['required', 'string', 'email', 'max:255'],
                     'location' => ['required','string'],
-                    'phone_number' => ['required, min:10, numeric'],
-                    'company_image' => ['required, mimes:png, jpg, jpeg']
+                    'phone' => ['min:9 ,numeric']
                 ];
             default:
                 break;

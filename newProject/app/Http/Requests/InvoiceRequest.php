@@ -25,7 +25,6 @@ class InvoiceRequest extends FormRequest
     {
         return [
             'iName*'=>['required', 'string'],
-            'comintent*'=>['required', 'string'],
             'qty*'=>['required', 'integer'],
             'cost*'=>['required', 'numeric'],
             'iName'=>['required','array'],

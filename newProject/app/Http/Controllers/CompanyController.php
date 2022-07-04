@@ -75,10 +75,10 @@ class CompanyController extends Controller
         try {
             DB::beginTransaction();
             $company = $this->companyService->store([
-                "name" => $request->company_name,
+                "company_name" => $request->company_name,
                 "email" => $request->email,
-                "location" => $request->address,
-                "number" => $request->phone
+                "location" => $request->location,
+                "phone" => $request->phone
             ]);
             //$this->fileService->storeFile($company, $request, 'logo', 'company_image', 'company_image');
             DB::commit();
@@ -141,10 +141,10 @@ class CompanyController extends Controller
                 $this->fileService->storeFile($company_update, $request, 'logo', 'company_image', 'company_image');
             }
             $this->companyService->update($company->id, [
-                "name" => $request->company_name,
+                "company_name" => $request->company_name,
                 "email" => $request->email,
-                "location" => $request->address,
-                "number" => $request->phone
+                "location" => $request->location,
+                "phone" => $request->phone
             ]);
             DB::commit();
             return redirect()->route('company.index')->with('status', 'Company Details Updated');

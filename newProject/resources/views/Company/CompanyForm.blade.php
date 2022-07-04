@@ -20,82 +20,78 @@
     <div class="testbox">
         @if (isset($company))
             <div class="container">
-            <h1>Edit Company Details</h1>
+                <div class="bg-white p-3 m-3">
+                    <h1>Edit Company</h1>
+                    <form action="{{route('company.update', $company->id)}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <label for="company_name">Company Name</label>
+                            <input type="text" id="company_name" name="company_name" class="company_name form-control" size="50"
+                                   value="{{$company->company_name}}" required>
+                            <span id="SpanCname" class="error"></span>
+                        </div>
 
-            <form action="{{route('company.update', $company->id)}}" method="post" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-                <label for="company_name">Company Name</label><br>
-                <input type="text" id="company_name" name="company_name" class="company_name" size="50"
-                       value="{{$company->name}}" required><br>
-                <span id="SpanCname" class="error"></span> <br>
+                        <div class="form-group">
+                            <label for="address">Location</label>
+                            <input type="text" id="address" name="address" class="address form-control" size="50"
+                                   value="{{$company->location}}" required>
+                            <span id="SpanAddress" class="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" id="email" name="email" class="email form-control" size="50"
+                                   value="{{$company->email}}">
+                            <span id="SpanEmail" class="error" required></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Contact Number</label>
+                            <input type="text" id="phone" name="phone" class="phone form-control" size="50"
+                                   value="{{$company->phone}}">
+                            <span id="SpanContact" class="error" required></span>
+                        </div>
+                        <button class="btn btn-outline-primary" type="submit" id="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
 
-                <label for="Address">Address</label><br>
-                <input type="text" id="Address" name="address" class="address" size="50"
-                       value="{{$company->location}}" required><br>
-                <span id="SpanAddress" class="error"></span> <br>
-
-                <label for="Email">Email</label><br>
-                <input type="text" id="Email" name="email" class="email" size="50"
-                       value="{{$company->email}}" required><br>
-                <span id="SpanEmail" class="error"></span> <br>
-
-                <label for="Contact">Contact number</label><br>
-                <input type="text" id="Contact" name="phone" class="phone" size="50"
-                       value="{{$company->number}}" required><br>
-                <span id="SpanContact" class="error"></span><br>
-
-                <button class="btn btn-outline-info" type="submit" id="submit">Submit</button>
-            </form>
-        </div>
         @else
             <div class="container">
+                <div class="bg-white p-3 m-3">
+                    <h1>Create New Company</h1>
+                    <form id="addPostForm" action="{{route('company.store')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="company_name">Company Name</label>
+                            <input type="text" id="company_name" name="company_name" class="company_name form-control" size="50"
+                                   value="{{@old('company_name')}}" required>
+                        </div>
+                        <span id="SpanCname" class="error"></span>
 
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" name="location" class="location form-control" size="50"
+                                   value="{{@old('location')}}" required>
+                        </div>
+                        <span id="SpanAddress" class="error"></span>
 
-            <h1>Create New</h1>
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input type="text" id="Email" name="email" class="email form-control" size="50" value="{{@old('email')}}"
+                            required>
+                        </div>
+                        <span id="SpanEmail" class="error" required></span>
 
-            <form>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <div class="form-group">
+                            <label for="phone">Contact Number</label>
+                            <input type="text" id="phone" name="phone" class="phone form-control" size="50" value="{{@old('phone')}}"
+                            required>
+                        </div>
+                        <span id="SpanContact" class="error" required></span>
+
+                        <button class="btn btn-outline-primary" type="submit" id="submit">Submit</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-
-            <form id="addPostForm" action="{{route('company.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group">
-                    <label for="company_name">Company Name</label><br>
-                    <input type="text" id="company_name" name="company_name" class="company_name" size="50"
-                           value="{{@old('company_name')}}" required><br>
-                    <span id="SpanCname" class="error"></span> <br>
-                </div>
-
-
-                <label for="Address">Address</label><br>
-                <input type="text" id="Address" name="address" class="address" size="50"
-                       value="{{@old('address')}}" required><br>
-                <span id="SpanAddress" class="error"></span> <br>
-
-                <label for="Email">Email</label><br>
-                <input type="text" id="Email" name="email" class="email" size="50" value="{{@old('email')}}"><br>
-                <span id="SpanEmail" class="error" required></span> <br>
-
-                <label for="Contact">Contact Number</label><br>
-                <input type="text" id="Contact" name="phone" class="phone" size="50" value="{{@old('phone')}}"><br>
-                <span id="SpanContact" class="error" required></span><br>
-
-                <button class="btn btn-outline-info" type="submit" id="submit">Submit</button>
-            </form>
             </div>
     </div>
     @endif

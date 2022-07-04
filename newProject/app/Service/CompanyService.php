@@ -92,7 +92,7 @@ class CompanyService
         $orWhere = [];
         if (isset($params['search'])) {
             $search = $params['search'];
-            $where = [['name', 'ilike', "%{$search}%"]];
+            $where = [['company_name', 'ilike', "%{$search}%"]];
             $orWhere = [['email', 'ilike', "%{$search}%"]];
         }
         $select = ['*'];

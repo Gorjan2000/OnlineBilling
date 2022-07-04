@@ -28,7 +28,7 @@
                 @if (!request()->has('sort') and !request()->has('order'))
                     <th scope="col" class="column_sort" id="sn">
                         <a href="{{request()->fullUrlWithQuery(['sort'=>'desc', 'order'=>'id'])}}">SN</a></th>
-                    <th scope="col" class="column_sort" id="name"><a
+                    <th scope="col" class="column_sort" id="company_name"><a
                             href="{{request()->fullUrlWithQuery(['sort'=>'desc', 'order'=>'name'])}}">
                             Name</a></th>
                     <th scope="col" class="column_sort" id="email">
@@ -44,7 +44,7 @@
                     @endphp
                     <th scope="col" class="column_sort" id="sn">
                         <a href="{{request()->fullUrlWithQuery(['sort'=>$sort, 'order'=>'id'])}}">SN</a></th>
-                    <th scope="col" class="column_sort" id="name"><a
+                    <th scope="col" class="column_sort" id="company_name"><a
                             href="{{request()->fullUrlWithQuery(['sort'=>$sort, 'order'=>'name'])}}">
                             Name</a></th>
                     <th scope="col" class="column_sort" id="email">
@@ -64,7 +64,7 @@
 
                 <tr>
                     <td>{{$index}}</td>
-                    <td>{{$company->name}}</td>
+                    <td>{{$company->company_name}}</td>
                     <td>{{$company->email}}</td>
                     <td><a class="fa fa-eye" href="{{route('company.show', $company->id)}}"></a></td>
                     <td><a class="fa fa-edit" href="{{route('company.edit', $company->id)}}"></a></td>
@@ -94,10 +94,10 @@
         </nav>
         </div>
     @else
-        Company Name: {{$company->name}} <br>
+        Company Name: {{$company->company_name}} <br>
         Company Email: {{$company->email}} <br>
         Location: {{$company->location}} <br>
-        Contact Number: {{$company->number}}
+        Contact Number: {{$company->phone}}
     @endif
 @section('JsSection')
     <script src="{{ asset('js/UserRetrieve.js') }}"></script>

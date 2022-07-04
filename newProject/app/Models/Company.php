@@ -9,7 +9,7 @@ class Company extends Model
 {
 
     use HasFactory;
-    protected $fillable=['name', 'email', 'location', 'number'];
+    protected $fillable=['company_name', 'email', 'location', 'phone'];
 
     public function user(){
         return $this->belongsTo(User::class, 'company_id', 'id');
