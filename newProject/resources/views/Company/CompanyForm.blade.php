@@ -19,7 +19,9 @@
     @endif
     <div class="testbox">
         @if (isset($company))
+            <div class="container">
             <h1>Edit Company Details</h1>
+
             <form action="{{route('company.update', $company->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -45,14 +47,39 @@
 
                 <button class="btn btn-outline-info" type="submit" id="submit">Submit</button>
             </form>
+        </div>
         @else
+            <div class="container">
+
+
             <h1>Create New</h1>
+
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
             <form id="addPostForm" action="{{route('company.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
-                <label for="company_name">Company Name</label><br>
-                <input type="text" id="company_name" name="company_name" class="company_name" size="50"
-                       value="{{@old('company_name')}}" required><br>
-                <span id="SpanCname" class="error"></span> <br>
+                <div class="form-group">
+                    <label for="company_name">Company Name</label><br>
+                    <input type="text" id="company_name" name="company_name" class="company_name" size="50"
+                           value="{{@old('company_name')}}" required><br>
+                    <span id="SpanCname" class="error"></span> <br>
+                </div>
+
 
                 <label for="Address">Address</label><br>
                 <input type="text" id="Address" name="address" class="address" size="50"
@@ -69,7 +96,7 @@
 
                 <button class="btn btn-outline-info" type="submit" id="submit">Submit</button>
             </form>
-
+            </div>
     </div>
     @endif
 @endsection

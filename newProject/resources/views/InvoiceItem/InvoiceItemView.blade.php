@@ -6,6 +6,7 @@
     <link href="{{ asset('css/UserLayout.css') }}" rel="stylesheet">
 @endsection
 @section('body')
+    <div class="container">
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -15,7 +16,10 @@
             </ul>
         </div>
     @endif
-    <a href="{{route('invoice.create')}}">Add New Invoice</a>
+    <button class="btn btn-primary text-white"><a class="text-white" style="text-decoration: none" href="{{route('invoice.create')}}">Add New Invoice</a></button>
+    <br/>
+    <hr/>
+
     <div id="invoice_details">
         <table class="table table-hover" id="myTable">
             <thead>
@@ -48,7 +52,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="fa fa-trash"></button>
-                            </form>
+                            </form>>
                         </td>
                     @endcanany
                 </tr>
@@ -56,5 +60,10 @@
             @endforeach
             </tbody>
         </table>
+        <br/>
+        <hr/>
+
     </div>
+    </div>
+
 @endsection

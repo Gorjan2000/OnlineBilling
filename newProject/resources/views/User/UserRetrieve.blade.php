@@ -9,22 +9,19 @@
 @endsection
 @section('title') User @endsection
 @section('body')
+    <div class="container">
     @if (session('status'))
         <div class="alert alert-success">{{session('status')}}</div>
     @endif
     @if (session('error_msg'))
         <div class="alert alert-success">{{session('msg')}}</div>
     @endif
-    <a href="{{route('user.create')}}">Add New User</a>
-    <nav aria-label="...">
-        <ul class="pagination">
-            @for ($i=1; $i<=$total; $i++)
-                <li class="page-item"><a class="page-link" id="{{$i}}" onclick="make_active({{$i}})" href="{{request()->fullUrlWithQuery(['page'=>$i])}}">{{$i}}</a></li>
-            @endfor
+        <button class="btn btn-primary text-white">
 
-        </ul>
-    </nav>
-
+        <a class="text-white" style="text-decoration: none" href="{{route('user.create')}}">Add New User</a>
+        </button>
+<br/>
+        <hr/>
     <form class="d-flex" action="{{route('Users')}}" method="GET">
         <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -89,6 +86,17 @@
             @endforeach<br>
         </tbody>
     </table>
+        <hr/>
+
+        <nav aria-label="..." >
+            <ul class="pagination justify-content-center">
+                @for ($i=1; $i<=$total; $i++)
+                    <li class="page-item"><a class="page-link" id="{{$i}}" onclick="make_active({{$i}})" href="{{request()->fullUrlWithQuery(['page'=>$i])}}">{{$i}}</a></li>
+                @endfor
+
+            </ul>
+        </nav>
+
     @else
         <?php $index = 1;?>
         {{ $users -> links()}}
@@ -111,6 +119,7 @@
         @endforeach<br>
         </tbody>
     @endif
+    </div>
 @section('JsSection')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('js/UserRetrieve.js') }}"></script>

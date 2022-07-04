@@ -1,7 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
+
 <div class="container">
+  <h1 class="text-center">Welcome</h1>
+    <h5 class="text-center">Please enter your credentials to login!</h5>
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,5 +72,6 @@
             </div>
         </div>
     </div>
+
 </div>
 @endsection

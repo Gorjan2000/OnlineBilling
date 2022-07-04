@@ -5,6 +5,7 @@
 @endsection
 @section('title') Company @endsection
 @section('body')
+    <div class="container">
     @if (session('status'))
         <div class="alert alert-success">{{session('status')}}</div>
     @endif
@@ -12,17 +13,11 @@
         <div class="alert alert-success">{{session('msg')}}</div>
     @endif
     @if(isset($companies))
-        <a href="{{route('company.create')}}">Add New Company</a>
-        <nav aria-label="...">
-            <ul class="pagination">
-                @for ($i=1; $i<=$total; $i++)
-                    <li class="page-item"><a class="page-link" id="{{$i}}" onclick="make_active({{$i}})"
-                                             href="{{request()->fullUrlWithQuery(['page'=>$i])}}">{{$i}}</a></li>
-                @endfor
 
-            </ul>
-        </nav>
 
+            <button class="btn btn-primary text-white"><a class="text-white" style="text-decoration: none" href="{{route('company.create')}}">Add New Company</a></button>
+            <br/>
+            <hr/>
         <form class="d-flex" action="{{route('company.index')}}" method="GET">
             <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
@@ -86,7 +81,18 @@
             @endforeach<br>
             </tbody>
         </table>
-        </tbody>
+        <br/>
+        <hr/>
+        <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+                @for ($i=1; $i<=$total; $i++)
+                    <li class="page-item"><a class="page-link" id="{{$i}}" onclick="make_active({{$i}})"
+                                             href="{{request()->fullUrlWithQuery(['page'=>$i])}}">{{$i}}</a></li>
+                @endfor
+
+            </ul>
+        </nav>
+        </div>
     @else
         Company Name: {{$company->name}} <br>
         Company Email: {{$company->email}} <br>
