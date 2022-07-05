@@ -174,7 +174,7 @@
                     </div>
                     <div class="col-4">
                         <div class="form-group">
-                            <label for="advance">Advance payment</label><br>
+                            <label for="advance">Advance payment</label>
                             <input required type="text" id="advance" name="advance" class="advance form-control"
                                    onkeyup="AdvanceValue()" value="0"><br>
                             <span id="SpanAdvance" class="error">@error('advance'){{$message}}@enderror</span>

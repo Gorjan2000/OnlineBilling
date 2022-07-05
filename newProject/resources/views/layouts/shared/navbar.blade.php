@@ -12,7 +12,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse border-bottom " id="navbarNavDropdown">
+        <div class="collapse navbar-collapse " id="navbarNavDropdown">
             @if (\Illuminate\Support\Facades\Auth::user())
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
