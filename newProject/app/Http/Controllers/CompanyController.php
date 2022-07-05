@@ -136,10 +136,7 @@ class CompanyController extends Controller
         try {
             DB::beginTransaction();
             $company_update = $this->companyService->find($company->id);
-            if ($request->hasFile('logo')) {
-                Storage::disk('uploads')->delete($company->company_image);
-                $this->fileService->storeFile($company_update, $request, 'logo', 'company_image', 'company_image');
-            }
+
             $this->companyService->update($company->id, [
                 "company_name" => $request->company_name,
                 "email" => $request->email,

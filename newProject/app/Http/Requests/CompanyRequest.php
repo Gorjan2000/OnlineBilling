@@ -28,17 +28,17 @@ class CompanyRequest extends FormRequest
         switch ($this->method()) {
             case 'POST':
                 return [
-                    'company_name' => ['required','string', 'max:255'],
+                    'company_name' => ['string', 'max:255'],
                     'email' => ['required', 'string', 'email', 'max:255', 'unique:companies'],
-                    'location' => ['required','string'],
+                    'location' => ['string'],
                     'phone' => ['min:9, numeric']
                 ];
 
             case 'PUT':
                 return [
-                    'company_name' => ['required','string', 'max:255'],
+                    'company_name' => ['string', 'max:255'],
                     'email' => ['required', 'string', 'email', 'max:255'],
-                    'location' => ['required','string'],
+                    'location' => ['string'],
                     'phone' => ['min:9 ,numeric']
                 ];
             default:

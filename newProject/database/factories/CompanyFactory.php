@@ -23,10 +23,10 @@ class CompanyFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'company_name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'location' => $this->faker->city(),
-            'number' => $this->faker->randomDigit(),
+            'phone' => $this->faker->randomDigit(),
         ];
     }
 }
