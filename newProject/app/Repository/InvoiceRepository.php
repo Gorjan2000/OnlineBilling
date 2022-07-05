@@ -5,6 +5,9 @@ namespace App\Repository;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use App\Models\Items;
+use App\Repository\Repository;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -28,9 +31,9 @@ class InvoiceRepository extends Repository
     /**
      * Retrieves all the details from invoice model
      *
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     * @return Builder[]|Collection
      */
-    public function index()
+    public function index(): Collection|array
     {
         return Invoice::with('invoice_items', 'company')->where('company_id', Auth::user()->company_id)->get();
     }

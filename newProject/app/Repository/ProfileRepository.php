@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Models\Company;
 use App\Models\Gender;
 use App\Models\Status;
 use App\Repository\Repository;
@@ -30,7 +31,7 @@ class ProfileRepository extends Repository
     }
 
     public function findWithRelation($id){
-        return Profile::with('user', 'gender', 'status')->find($id);
+        return Profile::with('user', 'gender', 'status', 'company')->find($id);
     }
 
 

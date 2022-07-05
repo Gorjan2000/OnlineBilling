@@ -50,6 +50,7 @@ class ProfileService
         $status = $this->profileRepository->getStatus();
         $profile = $this->profileRepository->findWithRelation($id);
 
+
         $profile->phone_number = $data->number;
         $profile->gender_id = $data->gender;
         $profile->status_id = $data->status;

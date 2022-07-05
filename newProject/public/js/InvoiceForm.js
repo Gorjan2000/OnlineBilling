@@ -1,11 +1,27 @@
+
+
+
 var c = document.getElementById("item-container").childElementCount;
 let Increment = 1;
 document.getElementById('add-new-item').onclick = function () {
     let template = `
-        <input type="text" id="iName" class="iName" name="iName[]" onkeyup="clickItem()"  placeholder="Item Name">
-        <input type="number" id="cost" class="cost" name="cost[]" placeholder="Unit cost">
-        <input type="number" id="quantity" name="qty[]" onkeyup="itemValue()" placeholder="Quantity">
-        <button type="button" id="bt" onclick="return this.parentNode.remove(); ">Delete</button>`;
+        <div class="row">
+        <div class="col-3">
+        <input type="text" id="iName" class="iName form-control" name="iName[]" onkeyup="clickItem()"  placeholder="Item Name">
+        </div>
+        <div class="col-3">
+        <input type="number" id="cost" class="cost form-control" name="cost[]" placeholder="Unit cost">
+        </div>
+        <div class="col-3">
+        <input type="number" id="quantity" class=" form-control" name="qty[]" onkeyup="itemValue()" placeholder="Quantity">
+        </div>
+        <div class="col-3">
+        <button type="button" id="bt" class="btn btn-danger" onclick="return this.parentNode.parentNode.remove(); ">Delete</button>
+        </div>
+        </div>
+        <br/>
+    `;
+
 
     let container = document.getElementById('item-container');
     let div = document.createElement('div');
@@ -75,8 +91,8 @@ function itemValue() {
     let tax = document.getElementById('tax')
     let discounted_price = (1 - (discount.value) / 100) * totalamount
     let tax_price = (1 + (tax.value) / 100) * discounted_price
-
     dcost.value = tax_price
+
 
     // DUE AMOUNT
     let due = document.getElementById('due')

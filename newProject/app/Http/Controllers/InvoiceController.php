@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\InvoiceRequest;
-use App\Mail\TestMail;
+
 use App\Service\InvoiceService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -13,22 +18,20 @@ use Illuminate\Support\Facades\Mail;
  */
 class InvoiceController extends Controller
 {
-    protected $invoiceService;
 
 
     /**
      * @param InvoiceService $invoiceService
      */
-    public function __construct(InvoiceService $invoiceService)
+    public function __construct(protected InvoiceService $invoiceService)
     {
-        $this->invoiceService = $invoiceService;
     }
 
 
     /**
      * Display a listing of the invoices.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @return Application|Factory|View|RedirectResponse
      */
     public function index()
     {
@@ -44,7 +47,7 @@ class InvoiceController extends Controller
 
     /**
      * Show the form for creating a new invoice.
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @return Application|Factory|View|RedirectResponse
      */
     public function create()
     {
@@ -61,7 +64,7 @@ class InvoiceController extends Controller
      * Store a newly created resource in storage.
      *
      * @param InvoiceRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(InvoiceRequest $request)
     {
@@ -84,7 +87,7 @@ class InvoiceController extends Controller
      * Display the specified invoice.
      *
      * @param $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @return Application|Factory|View|RedirectResponse
      */
     public function show($id)
     {
@@ -93,8 +96,7 @@ class InvoiceController extends Controller
             $invoice = $result[0];
             $arr = $result[1];
             $discounted_cost = $result[2];
-            $comintent = $result[3];
-            return view('InvoiceItem.Preview', compact('invoice', 'arr', 'discounted_cost','comintent'));
+            return view('InvoiceItem.Preview', compact('invoice', 'arr', 'discounted_cost'));
         } catch (\Exception $exception) {
             Log::error($exception);
             return redirect()->back()->with('error_msg', $exception);
@@ -106,7 +108,7 @@ class InvoiceController extends Controller
      * Show the form for editing the specified invoice.
      *
      * @param $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @return Application|Factory|View|RedirectResponse
      */
     public function edit($id)
     {
@@ -115,8 +117,7 @@ class InvoiceController extends Controller
                 $result = $this->invoiceService->edit($id);
                 $arr = $result[0];
                 $invoice = $result[1];
-                $comintent = $result[2];
-                return view('InvoiceItem.InvoiceItemForm', compact('invoice', 'arr','comintent'));
+                return view('InvoiceItem.InvoiceItemForm', compact('invoice', 'arr'));
             }
         } catch (\Exception $exception) {
             Log::error($exception);
@@ -130,7 +131,7 @@ class InvoiceController extends Controller
      *
      * @param InvoiceRequest $request
      * @param $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(InvoiceRequest $request, $id)
     {
@@ -148,7 +149,7 @@ class InvoiceController extends Controller
      * Remove the specified invoice from storage.
      *
      * @param $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function destroy($id)
     {

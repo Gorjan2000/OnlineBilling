@@ -16,7 +16,6 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('comintent',125);
             $table->string('discount',125);
             $table->string('tax',125);
             $table->unsignedBigInteger('company_id');

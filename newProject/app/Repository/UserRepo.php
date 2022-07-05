@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Models\Company;
 use App\Models\Gender;
 use App\Models\Status;
 use App\Models\User;

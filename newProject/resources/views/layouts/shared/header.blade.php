@@ -1,6 +1,6 @@
 <div id="app">
     @include('layouts.shared.navbar')
-    <main class="py-4">
+    <main class="">
         @yield('content')
     </main>
 </div>
